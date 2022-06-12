@@ -1,10 +1,10 @@
 const express = require("express");
 const path = require('path');
-const mul  = require('multer');
+const multipart  = require('multer');
 
 const app = express();
 
-const fs = mul.diskStorage({ 
+const fs = multipart.diskStorage({ 
     destination: (req,file, cb)=>{
         cb(null, './images');
     },
@@ -12,7 +12,7 @@ const fs = mul.diskStorage({
         cb(null, Date.now() + '--' + file.originalname)
     }
 })
-const upload = mul({ storage: fs });
+const upload = multipart({ storage: fs });
 
 
 app.get("/",(req,res)=>{
